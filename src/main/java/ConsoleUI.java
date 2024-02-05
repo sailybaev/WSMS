@@ -2,8 +2,7 @@ import mgmt.TaskManager;
 import models.Task;
 import models.TaskCategory;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleUI {
     private static TaskManager taskManager = new TaskManager();
@@ -39,7 +38,7 @@ public class ConsoleUI {
         }
     }
     private static void displayMenu() {
-        System.out.println("----- models.Task Manager Menu -----");
+        System.out.println("----- Task Manager Menu -----");
         System.out.println("1. Add Task");
         System.out.println("2. Update Task");
         System.out.println("3. Delete Task");
@@ -82,7 +81,7 @@ public class ConsoleUI {
         Task task = taskManager.getTask(id);
 
         if (task != null) {
-            System.out.print("Enter new models.Task Name: ");
+            System.out.print("Enter new Task Name: ");
             String name = scanner.nextLine();
 
             System.out.print("Enter new Description: ");
@@ -128,7 +127,7 @@ public class ConsoleUI {
 
     private static void viewAllTasks() {
         List<Task> tasks = taskManager.getAllTasks();
-
+        //tasks.sort(Comparator.comparing(Task::getName));
         if (tasks.isEmpty()) {
             System.out.println("Netu taskov");
         }
