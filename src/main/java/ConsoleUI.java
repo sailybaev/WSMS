@@ -48,7 +48,7 @@ public class ConsoleUI {
     }
 
     private static void addTask(Scanner scanner) {
-        System.out.print("Enter models.Task Name: ");
+        System.out.print("Enter Task Name: ");
         String name = scanner.nextLine();
 
         System.out.print("Enter Description: ");

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskDB {
+public class TaskDB implements ITaskDB{
     private Connection connection;
     public TaskDB() {
         try {
@@ -24,7 +24,7 @@ public class TaskDB {
     }
 
     private void createTaskTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS tasks (id SERIAL PRIMARY KEY,task_name VARCHAR(255) NOT NULL,description TEXT,deadline VARCHAR(20) NOT NULL,category VARCHAR(255) NOT NULL)";
+        String sql = "CREATE TABLE IF NOT EXISTS tasks (id SERIAL PRIMARY KEY,task_name VARCHAR(255) NOT NULL,description TEXT,deadline VARCHAR(20) NOT NULL,category VARCHAR(255))";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();
         }
@@ -81,12 +81,11 @@ public class TaskDB {
                 stmt.setString(4, ((TaskCategory) task).getCategory());
             }
             else {
-                stmt.setNull(4, java.sql.Types.VARCHAR);
+                stmt.setString(4 , "-");
             }
 
             stmt.setInt(5, task.getId());
             stmt.executeUpdate();
-            System.out.println("Task updated successfully!");
         }
         catch (SQLException e) {
             ExceptionManager.handleException(e);

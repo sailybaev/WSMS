@@ -5,7 +5,7 @@ import models.Task;
 import java.util.List;
 
 public class TaskManager {
-    private TaskDB db;
+    private ITaskDB db;
 
     public TaskManager() {
         this.db = new TaskDB();
